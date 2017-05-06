@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+archivesBaseName = 'MelzolServices'
+version = '1.0'
+war.baseName = 'MelzolServices'
+// Web directory, this overrides the default value "webapp"
+project.webAppDirName = 'WebContent'
+ext.deps = [
+	tomcatVersion:'8.5.14',
+    springVersion:'4.0.6.RELEASE',
+    hibernateVersion:'4.3.6.Final',
+    mySqlVersion:'5.1.34'
+]
+repositories {
+    mavenCentral()
+}
+dependencies {
+   compile  'org.apache.commons:commons-lang3:3.0'
+   compile  'log4j:log4j:1.2.17'
+   compile "org.springframework:spring-webmvc:"+deps.springVersion
+   compile "org.springframework:spring-orm:"+deps.springVersion
+   compile "org.hibernate:hibernate-core:"+deps.hibernateVersion
+   compile "mysql:mysql-connector-java:"+deps.mySqlVersion
+   compile "org.json:json:20090211"
+   compile "commons-httpclient:commons-httpclient:3.1"
+   compile "javax.mail:mail:1.4"
+   compile "com.fasterxml.jackson.core:jackson-databind:2.1.2"
+   compile "org.mariadb.jdbc:mariadb-java-client:1.1.7"
+   providedCompile 'org.apache.tomcat:tomcat-catalina:'+deps.tomcatVersion
+   testCompile 'junit:junit:4.12'
+} 
